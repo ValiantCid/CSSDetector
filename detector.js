@@ -1,8 +1,8 @@
 var cssDetector = {
     init: function() {
+        var excluded = false;
         for (var stylesheet in document.styleSheets) {
             if (typeof document.styleSheets[stylesheet].href === "undefined") continue;
-            var excluded = false;
             for (var ex in this.exclude) {
                 if (document.styleSheets[stylesheet].href !== null && document.styleSheets[stylesheet].href.indexOf(this.exclude[ex]) > -1) excluded = true;
             }
