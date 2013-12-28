@@ -1,8 +1,14 @@
 # CSS Detector
-## Detect unused CSS rules.
+Written by Cam Wright
 
-Just a quick heads up- if configured incorrectly, this can spit out a lot of console errors... but that's kind of the point
+----
+Just a quick heads up- if configured incorrectly, this can spit out a lot of console errors... but that's kind of the point.
 
-This library uses the CustomEvent constructor so it probably won't work in IE 10 or below, maybe even IE 11. It is currently not designed for production use.
+This library uses the CustomEvent constructor so it probably won't work in IE 10 or below, maybe even IE 11.
 
-Use it wisely.
+You can trigger updates to the cssDetector object by adding a listener to the "cssDetectorRun" event. This will allow you to change the way the library reacts and deals with unused rules.
+
+`cssDetector.consoleErrors = false;` will turn off the console errors that the library spits out by default.
+`cssDetector.removeBadSelectors = true` will remove the CSS Rules from the DOM and thus freeing up more memory on the user's machine.
+
+Of course because I'm currently not supporting IE at all yet, you might not want to run this on production websites (unless you're also not support IE).
