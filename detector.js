@@ -1,3 +1,18 @@
+//IE Polyfill - Custom Event Constructor 
+(function () {
+  function CustomEvent ( event, params ) {
+    params = params || { bubbles: false, cancelable: false, detail: undefined };
+    var evt = document.createEvent( 'CustomEvent' );
+    evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+    return evt;
+   };
+
+  CustomEvent.prototype = window.CustomEvent.prototype;
+
+  window.CustomEvent = CustomEvent;
+})();
+
+// Create cssDetector object
 var cssDetector = {
     init: function() {
         var excluded = false;
@@ -28,10 +43,10 @@ var cssDetector = {
         
 };
 
+// run event and init only when the entire page has loaded.
 document.onreadystatechange = function() {
     if (document.readyState === "complete") {
         window.dispatchEvent(cssDetector.runEvent);
-        // run only when the page has entirely loaded
         cssDetector.init();
     }
 };
